@@ -1,1 +1,22 @@
-git rm --cached .env
+# Node.js
+node_modules/
+
+# Vite
+/dist/
+
+# React build
+/build/
+
+# Environment files
+.env
+
+# Logs
+*.log
+
+# IDE/editor directories
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
