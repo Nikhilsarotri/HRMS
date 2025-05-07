@@ -11,9 +11,20 @@ import leaveRouter from "./Routes/leaveRoutes.js"
 dotenv.config()
 
  const app=express();
- app.use(cors({
-  origin: '*',  // Allow all origins
-  credentials: true  // Allow credentials (cookies)
+ const allowedOrigins = [
+  "http://localhost:5173",
+  "https://hrms-nikhil.netlify.app"
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
 }));
 
 
