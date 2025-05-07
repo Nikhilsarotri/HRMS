@@ -6,7 +6,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { Base_Url } from '../../../server/constants';
 import { CiFileOn } from "react-icons/ci";
-
+import { toast } from "react-toastify";
 const Leave = () => {
   const [selectedStatus, setSelectedStatus] = useState('');
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -83,11 +83,11 @@ const Leave = () => {
           setCurrentDate(new Date(updatedLeave.leaveDate));
         }
 
-        alert('Status updated successfully');
+        toast.success('Status updated successfully');
       }
     } catch (error) {
       console.error("Error updating status:", error);
-      alert(error.response?.data?.message || "Failed to update status");
+      toast.error(error.response?.data?.message || "Failed to update status");
     }
   };
 
@@ -207,7 +207,7 @@ const Leave = () => {
           setCurrentDate(new Date(formData.leaveDate));
         }
         
-        alert("Leave request submitted successfully!");
+        toast.success("Leave request submitted successfully!");
         setShowModal(false);
         setSelectedPosition('');
         setFormData({
@@ -222,7 +222,7 @@ const Leave = () => {
       }
     } catch (error) {
       console.error("Error submitting leave request:", error);
-      alert(error.response?.data?.message || "Failed to submit leave request");
+      toast.error(error.response?.data?.message || "Failed to submit leave request");
     }
   };
 
@@ -295,6 +295,7 @@ const Leave = () => {
                   </select>
                 </div>
                 <div>
+                  {console.log("url",leave.documentUrl)}
                   {leave.documentUrl ? (
                     <a 
                       href={leave.documentUrl} 
