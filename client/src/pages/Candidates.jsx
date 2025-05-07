@@ -131,7 +131,7 @@ const Candidates = () => {
 
   const fetchCandidateById = async (id) => {
     try {
-      const response = await axios.get(`${Base_Url}/candidates/${id}`, {
+      const response = await axios.get(`${Base_Url}/candidates/${id}`, { withCredentials: true,
         headers: {
           "Content-Type": "application/json",
         },

@@ -99,7 +99,7 @@ catch(err){
         //   onClick={() => handleNav('/candidates', 'Candidates')}
         >
           <IoSparklesOutline />
-          <span>Leaves</span>
+          <span className='hover:cursor-pointer'>Leaves</span>
         </div>
         
      
