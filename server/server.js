@@ -15,6 +15,14 @@ dotenv.config()
   origin: '*',  // Allow all origins
   credentials: true  // Allow credentials (cookies)
 }));
+
+
+res.cookie('token', token, {
+  httpOnly: true,        // Ensures the cookie is only accessible via HTTP(S)
+  secure: process.env.NODE_ENV === 'production', // Only use Secure cookies in production
+  sameSite: 'None',      // Allow the cookie to be sent cross-origin (if needed)
+  maxAge: 3600000,       // 1 hour expiration (adjust as needed)
+});
   connectDb();
   app.use(express.json());
   app.use(cookieParser());
