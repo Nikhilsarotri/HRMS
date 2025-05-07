@@ -11,10 +11,21 @@ import leaveRouter from "./Routes/leaveRoutes.js"
 dotenv.config()
 
  const app=express();
- app.use(cors({
-    origin: 'http://localhost:5173', // don't use '*'
-    credentials: true               // allow cookies/credentials
-  }));
+ const allowedOrigins = [
+  "http://localhost:5173",          // Local frontend (Vite)
+  "https://yourfrontend.onrender.com"  // Optional: if deployed later
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
+}));
   connectDb();
   app.use(express.json());
   app.use(cookieParser());
