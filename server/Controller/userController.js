@@ -67,6 +67,7 @@ export const Createuser = async (req, res) => {
           expiresIn: "2h",
         }
       );
+     
       console.log(token);
       const updateuser = await userModel.findByIdAndUpdate(
         user._id,
@@ -74,7 +75,11 @@ export const Createuser = async (req, res) => {
         { new: true }
       );
   
-      res.cookie("token", token);
+      res.cookie("token", token, {
+        httpOnly: true,
+        secure: true, // only if using HTTPS (which you are)
+        sameSite: "None", // required when using cross-site cookies with secure=true
+      });
       return res.status(200).json({
         message: "Login successful",
         user: updateuser,

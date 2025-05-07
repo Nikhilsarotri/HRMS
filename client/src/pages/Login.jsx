@@ -38,7 +38,9 @@ const Login = () => {
         { withCredentials: true }
       );
 
-      navigate("/");
+      localStorage.setItem("isLoggedIn", "true"); // Save login state
+      navigate('/candidates'); // Redirect to candidates page
+    
     } catch (err) {
       setError(
         err.response?.data?.message || "Login failed. Please try again."
