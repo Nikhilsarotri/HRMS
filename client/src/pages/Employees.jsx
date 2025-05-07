@@ -5,6 +5,7 @@ import axios from 'axios';
 import { FaSearch,FaUserPlus } from 'react-icons/fa';
 import { Base_Url } from '../../../server/constants';
 import img from '../assets/dummy.jpeg';
+import { toast } from "react-toastify";
 
 const Employees = () => {
   const [employees, setEmployees] = useState([]);
@@ -58,13 +59,13 @@ const Employees = () => {
       });
 
       if (response.status === 200) {
-        alert("Employee deleted successfully!");
+        toast.success("Employee deleted successfully!");
         setMenuIndex(null);
         fetchEmployee()
       }
     } catch (error) {
       console.error("Error deleting employee:", error);
-      alert("Failed to delete employee.");
+      toast.error("Failed to delete employee.");
     }
   };
 
@@ -78,7 +79,7 @@ const Employees = () => {
       });
 
       if (response.status === 200) {
-        alert("Employee updated successfully!");
+      toast.success("Employee updated successfully!");
         setShowModal(false);
         setSelectedEmployee(null);
         setFormData({
@@ -93,7 +94,7 @@ const Employees = () => {
       }
     } catch (error) {
       console.error("Error updating employee:", error);
-      alert("Failed to update employee.");
+      toast.error("Failed to update employee.");
     }
   };
 
@@ -136,7 +137,7 @@ const Employees = () => {
       setMenuIndex(null);
     } catch (error) {
       console.error("Error fetching employee by ID:", error);
-      alert("Failed to fetch employee details.");
+      toast.error("Failed to fetch employee details.");
     }
   };
 

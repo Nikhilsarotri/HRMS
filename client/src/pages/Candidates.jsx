@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import "./Candidate.css"
 import { Base_Url } from '../../../server/constants';
 import Searchbar from '../Components/Searchbar';
+import { toast } from "react-toastify";
 
 
 
@@ -90,7 +91,7 @@ const Candidates = () => {
         }
       );
       if (response?.status == 201) {
-        alert("Candidate added successfully!");
+        toast.success("Candidate added successfully!");
         setFormData({
           name: '',
           email: '',
@@ -120,12 +121,12 @@ const Candidates = () => {
       });
 
       if (response.status === 200) {
-        alert("Candidate deleted successfully!");
+        toast.success("Candidate deleted successfully!");
         fetchCandidates()
       }
     } catch (error) {
       console.error("Error deleting candidate:", error);
-      alert("Failed to delete candidate.");
+      toast.error("Failed to delete candidate.");
     }
   };
 
@@ -165,7 +166,7 @@ const Candidates = () => {
       });
 
       if (response.status === 200) {
-        alert("Candidate updated successfully!");
+        toast.success("Candidate updated successfully!");
         setShowModal(false);
         setSelectedCandidate(null);
         setFormData({
@@ -180,7 +181,7 @@ const Candidates = () => {
       }
     } catch (error) {
       console.error("Error updating candidate:", error);
-      alert("Failed to update candidate.");
+      toast.error("Failed to update candidate.");
     }
   };
 
@@ -202,12 +203,12 @@ const Candidates = () => {
             candidate._id === id ? { ...candidate, status: newStatus } : candidate
           )
         );
-        alert(response.data.message || "Status updated successfully");
+        toast.success(response.data.message || "Status updated successfully");
         fetchCandidates();
       }
     } catch (error) {
       console.error("Error updating status:", error);
-      alert("Failed to update status.");
+      toast.error("Failed to update status.");
       fetchCandidates();
     }
   };
@@ -229,11 +230,11 @@ const Candidates = () => {
             candidate._id === id ? { ...candidate, position: newPosition } : candidate
           )
         );
-        alert(response.data.message || "Position updated successfully");
+        toast.success(response.data.message || "Position updated successfully");
       }
     } catch (error) {
       console.error("Error updating position:", error);
-      alert("Failed to update position.");
+      toast.error("Failed to update position.");
       fetchCandidates();
     }
   };

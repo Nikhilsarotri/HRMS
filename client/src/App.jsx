@@ -48,6 +48,8 @@ import Attendance from './pages/Attendance';
 import Leaves from './pages/Leaves';
 import { Register } from "./pages/Register";
 import Candidates from "./pages/Candidates";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Create ProtectedRoute Component
 const ProtectedRoute = ({ children }) => {
@@ -59,7 +61,8 @@ const ProtectedRoute = ({ children }) => {
 };
 
 function App() {
-  return (
+  return (<>
+    <ToastContainer position="top-right" autoClose={3000} />
     <BrowserRouter basename="/">
       <Routes>
         {/* Public Route */}
@@ -105,6 +108,7 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+    </>
   );
 }
 

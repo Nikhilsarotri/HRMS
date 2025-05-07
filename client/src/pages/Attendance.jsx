@@ -4,6 +4,7 @@ import { Base_Url } from '../../../server/constants';
 import "./Candidate.css"
 import axios from 'axios';
 import img from '../assets/dummy.jpeg';
+import { toast } from 'react-toastify';
 
 const Attendance = () => {
   const [filterStatus, setFilterStatus] = useState('');
@@ -35,12 +36,12 @@ const Attendance = () => {
       });
 
       if (response.status === 200) {
-        alert(response.data.message);
+        toast.success(response.data.message);
         fetchAttendance();
       }
     } catch (error) {
       console.error("Error updating employee:", error);
-      alert("Failed to update employee.");
+      toast.success("Failed to update employee.");
     }
   };
 
